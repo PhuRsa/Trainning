@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  php-apache:
+      build:
+        context: .
+      ports:
+        - "5000:80"
+      volumes:
+        - ./src:/var/www/html/
+        - ./notes:/var/www/html/notes
