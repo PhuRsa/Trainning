@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block css %}
+<style>
+    h1{
+        color:snow;
+    }
+    .upload_file{
+        background-color: seagreen;
+        padding: 50px;
+    }
+</style>
+{% endblock %}
+{% block a %}
+<h1> Extract Service </h1>
+<div class="upload_file">
+    <form method="POST" action="uploads" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input name="file" type="file">
+        </div>
+        <button  type="submit">Upload</button>
+    </form>
+    <br>
+    <div class="info"> 
+        <h3>
+            Status:{{ info }}
+            <br>
+            Save at Directory: ./uploads/{{ dirt }}
+            <br>
+        </h3> 
+        
+    </div> 
+</div>
+{% endblock %}

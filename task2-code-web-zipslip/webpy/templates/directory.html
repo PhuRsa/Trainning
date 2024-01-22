@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block a %}
+<h3>Directory:{{dir}}</h3>
+    <h4>List your Directory:</h4>
+</div>
+<div>
+    <ul>
+        {% for file in dirs %}
+        <li>
+            {{ (request.path + '/' if request.path != '/' else '') + file }}     
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
