@@ -24,7 +24,11 @@ def handler_file():
           try:
                dir_md5 = md5(file.filename.encode())
                os.makedirs(f'{app.config["UPLOAD_FOLDER"]}/{dir_md5.hexdigest()}')
+<<<<<<< HEAD
                os.system(f'cd {app.config["UPLOAD_FOLDER"]}/{dir_md5.hexdigest()};unzip -: -o /tmp/temp.zip ')
+=======
+               os.system(f' cd {app.config["UPLOAD_FOLDER"]}/{dir_md5.hexdigest()} ;unzip -: -o /tmp/temp.zip')
+>>>>>>> 2b3a2d52fd31c201eb2f7f49ebf7560bc95621da
                return render_template('uploads.html',dirt=dir_md5.hexdigest(),info='Success')
           except:
                return render_template('uploads.html',info='erorr')
