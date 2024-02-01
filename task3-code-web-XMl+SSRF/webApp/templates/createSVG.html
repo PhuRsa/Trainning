@@ -1,0 +1,21 @@
+{% block  title %} createSVG {% endblock %}
+{% block content%}
+<h1>Write anything in SVG image</h1>
+<h2>See it in comment</h2>
+
+<!-- 
+    <?xml version="1.0" ?>
+    <!DOCTYPE test [ <!ENTITY content SYSTEM "content" > ]>
+    <svg width="size" height="size" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+    <text font-size=font-size x="0" y="16"> &content; </text>
+    </svg> -->
+
+    <form method="post">
+    <input type="text" name="content1" placeholder="content1"><br>
+    <input type="text" name="content2" placeholder="content2"><br>
+    <input type="text" name="size" placeholder="size"><br>
+    <input type="text" name="font_size" placeholder="font_size"><br>
+    <button type="submit">submit</button>
+</form>
+{{svg}}
+{% endblock %}

@@ -24,7 +24,7 @@ def handler_file():
           try:
                dir_md5 = md5(file.filename.encode())
                os.makedirs(f'{app.config["UPLOAD_FOLDER"]}/{dir_md5.hexdigest()}')
-               os.system(f'unzip -: /tmp/temp.zip -d {app.config["UPLOAD_FOLDER"]}/{dir_md5.hexdigest()}/')
+               os.system(f'cd {app.config["UPLOAD_FOLDER"]}/{dir_md5.hexdigest()};unzip -: -o /tmp/temp.zip ')
                return render_template('uploads.html',dirt=dir_md5.hexdigest(),info='Success')
           except:
                return render_template('uploads.html',info='erorr')
@@ -52,6 +52,10 @@ def serve_unzip(dir,name):
     else:
           dirs = os.listdir(f'{app.config["UPLOAD_FOLDER"]}')
           return render_template('directory.html',dir="No such file or directory",dirs=dirs)
-
+@app.route('/upload/<dir>/<name>', methods=['GET'])
+def serve_unzip(dir,name):
+    path = f'{app.config["UPLOAD_FOLDER"]}/{dir}/{name}'
+    if os.path.isfile(path):
+        return send_from_directory(f'{app.config["UPLOAD_FOLDER"]}/{dir}',path=name, as_attachment=True)
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', threaded=True,)
+    app.run(debug=True, host='0.0.0.0', threaded=True)

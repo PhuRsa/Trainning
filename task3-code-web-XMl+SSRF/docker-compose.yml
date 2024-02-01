@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  php-service:
+    build:
+      context: ./servicePHP   
+    networks:
+      - your-network
+
+  python-service:
+    build:
+      context: ./webApp
+    networks:
+      - your-network
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./webApp:/app"
+
+
+networks:
+  your-network:
+    driver: bridge
