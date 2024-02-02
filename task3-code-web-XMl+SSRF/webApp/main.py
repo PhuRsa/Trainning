@@ -24,19 +24,8 @@ def handle():
 <text font-size="{font_size}" x="30" y="60"> &ct1; </text>
 </svg>
         '''
-
-        if content2.startswith("http://"):
-            ct2 = os.system(f"curl {content2}")
-            imageSvg = f'''<?xml version="1.0" ?>
-<!DOCTYPE test [ <!ENTITY ct2 "{ct2}" >
-<!ENTITY ct1 "{content1}" >]>
-<svg width="{size}px" height="{size}px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="red" version="1.1">
-<text font-size="{font_size}" x="0" y="30"> &ct2; </text>
-<text font-size="{font_size}" x="30" y="60"> &ct1; </text>
-</svg>
-        '''
-        parser = etree.XMLParser(resolve_entities=True, dtd_validation=False, load_dtd=True)
-        tree = etree.fromstring(imageSvg,parser)
+        parser = etree.XMLParser(no_network=False,resolve_entities=True ,load_dtd=True)
+        tree = etree.fromstring(str(imageSvg),parser)
         parsed_xml = etree.tostring(tree)
         return parsed_xml
 
